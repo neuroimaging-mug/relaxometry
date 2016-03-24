@@ -1,0 +1,9 @@
+# The NIFTI source tree
+get_filename_component(SELF_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
+
+set(NIFTI_INCLUDE_DIRS "@NIFTI_INSTALL_INCLUDE_DIR@")
+set(NIFTI_LIBRARY_DIRS "@NIFTI_INSTALL_LIB_DIR@")
+set(NIFTI_USE_FILE ${SELF_DIR}/UseNIFTI.cmake)
+
+# Backward compatible part
+set(NIFTI_FOUND TRUE)

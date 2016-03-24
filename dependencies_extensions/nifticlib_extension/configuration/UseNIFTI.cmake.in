@@ -1,0 +1,15 @@
+# This module is provided as NIFTI_USE_FILE by NIFTIConfig.cmake.
+# It can be INCLUDEd in a project to load the needed compiler and linker
+# settings to use NIFTI:
+#   find_package(NIFTI REQUIRED)
+#   include(${NIFTI_USE_FILE})
+
+if(NOT NIFTI_USE_FILE_INCLUDED)
+  set(NIFTI_USE_FILE_INCLUDED 1)
+
+  # Add include directories needed to use NIFTI.
+  include_directories(${NIFTI_INCLUDE_DIRS})
+
+  # Add link directories needed to use NIFTI.
+  link_directories(${NIFTI_LIBRARY_DIRS})
+endif()
