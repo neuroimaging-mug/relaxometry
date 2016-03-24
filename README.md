@@ -8,6 +8,7 @@ Supported input formats are DICOM and NIfTI. An adapter for MATLAB via mex funct
 R1/T1 maps using the monoexponential model. R2/T2/R2*/T2* maps using the monoexponential model. A more advanced model for T2 maps is also included. Goodness-of-Fit map calculation is also available to check the results.
 # Usage
 Example shows how to create a R2* map using the monoexponential model.
+
 `relaxometry -p cudalmf -m expr2 -t 100 -- echotimes ./data/nii/input/T2star/1/echotimes.txt ../data/nii/input/T2star/1/gre6E.M.nii.gz R2star_cudalmf_expr2_1.nii.gz M0_cudalmf_expr2_1.nii.gz GoF_cudalmf_expr2_1.nii.gz`
 # Dependencies
 - [Grassroots DICOM implementation](https://sourceforge.net/projects/gdcm/)
