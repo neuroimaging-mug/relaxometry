@@ -2,6 +2,9 @@ cmake_minimum_required (VERSION 2.8)
 
 project(Relaxometry)
 
+#Config, specifc settings should be made their
+include(config/config.cmake)
+
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 
@@ -16,7 +19,7 @@ IF(WIN32)
   link_directories("${PROJECT_SOURCE_DIR}/dependencies/gdcm_bin/Debug/bin/")
 ELSE(WIN32)
   set(GDCM_LIB gdcmMSFF gdcmDSED gdcmCommon)
-  set(NIFTI_DIR "${PROJECT_SOURCE_DIR}/dependencies/nifticlib_bin/nifticlib")
+  #set(NIFTI_DIR "${PROJECT_SOURCE_DIR}/dependencies/nifticlib_bin/nifticlib")
   set(NIFTI_LIB fslio niftiio znz z)
 ENDIF(WIN32)
 

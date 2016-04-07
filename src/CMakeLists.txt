@@ -2,9 +2,6 @@ project(app)
 
 find_package(CUDA)
 
-set(CUDA_64_BIT_DEVICE_CODE ON)
-set(CUDA_HOST_COMPILER /usr/bin/gcc-4.9)
-
 set(CUDA_NVCC_FLAGS ${CUDA_NVCC_FLAGS}
 	#-G #device-debug, problems with pointers global/shared memory -> works since cc 2.0
 	#-g #host-debug

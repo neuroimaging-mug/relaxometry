@@ -7,9 +7,9 @@
 
 #include "DicomFileHandler.hpp"
 
-#include <gdcm-2.6/gdcmAttribute.h>
-#include <gdcm-2.6/gdcmAnonymizer.h>
-#include <gdcm-2.6/gdcmImageWriter.h>
+#include <gdcmAttribute.h>
+#include <gdcmAnonymizer.h>
+#include <gdcmImageWriter.h>
 
 #include <stdexcept>
 

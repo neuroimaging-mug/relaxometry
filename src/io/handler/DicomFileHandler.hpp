@@ -10,7 +10,7 @@
 
 #include "IFileHandler.hpp"
 
-#include <gdcm-2.6/gdcmImageReader.h>
+#include <gdcmImageReader.h>
 
 using namespace gdcm;
 
