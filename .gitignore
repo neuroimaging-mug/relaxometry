@@ -2,3 +2,6 @@ bin/**/*
 lib/**/*
 build/**/*
 dependencies/**/*
+nbproject/**/*
+benchmark/**/*
+data/**/*

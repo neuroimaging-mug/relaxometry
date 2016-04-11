@@ -31,8 +31,8 @@ bool CCheckStoppingCriteria(NUMERICTYPECALC* parameters, NUMERICTYPECALC* step,
 		return true;
 
 	if(iteration == max_iteration_count) {
-		for(int i = 0; i < parameters_length; ++i)
-			parameters[i] = 1; //NOT_CONVERGING;
+		//for(int i = 0; i < parameters_length; ++i)
+		//	parameters[i] = 1; //NOT_CONVERGING;
 
 		return true;
 	}

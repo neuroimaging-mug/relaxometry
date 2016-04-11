@@ -47,8 +47,8 @@ __device__ bool CudaCheckStoppingCriteria(NUMERICTYPECALC* parameters, NUMERICTY
 		return true;
 
 	if(iteration == max_iteration_count) {
-		for(int i = 0; i < parameters_length; ++i)
-			parameters[i] = 1; //NOT_CONVERGING;
+		//for(int i = 0; i < parameters_length; ++i)
+			//parameters[i] = 1; //NOT_CONVERGING;
 
 		return true;
 	}
