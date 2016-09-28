@@ -20,7 +20,7 @@ The software was realized in C++ and CUDA 7.5 on an Arch Linux and Ubuntu 14.04 
 The MRI-fitting relaxometry project is open source software, licensed under the terms of BSD license.
 
 ## Try it out! -> Get our Dockerimage
-The easiest way to test the fitting tool is to download the provided docker image. Please download first the newest [Docker](https://www.docker.com/) version for your operating system.
+The easiest way to test the fitting tool is to download the provided docker image. Please download first the newest [Docker](https://www.docker.com/) version for your operating system. Also the [nvidia Docker](https://github.com/NVIDIA/nvidia-docker) has to be installed, if a CUDA card is available.
 
 Next steps: 
 - open the Docker Terminal
