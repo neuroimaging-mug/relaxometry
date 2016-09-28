@@ -36,6 +36,6 @@ Example shows how to create a R2* map using the monoexponential model.
 [4]   A. Petrovic, E. Scheurer, R. Stollberger (2015): Closed-form solution for T2 mapping with nonideal refocusing of slice selective CPMG sequences; MRM
 
 ## Authors
-C. Tinauer (1), A. Petrovic (2), S. Ropele (1), L. Pirpamer (1) 
-1) Neuroimaging Research Unit - Medical University of Graz, Department of Neurology, Graz, Austria; <br>
-2) Institute of Medical Engineering, Graz University of Technology, Graz, Austria; 
+C. Tinauer (1), A. Petrovic (2), S. Ropele (1), L. Pirpamer (1) <br>
+1) *Neuroimaging Research Unit - Medical University of Graz, Department of Neurology, Graz, Austria;* <br>
+2) *Institute of Medical Engineering, Graz University of Technology, Graz, Austria; *
