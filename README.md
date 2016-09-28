@@ -32,7 +32,7 @@ For those systems without a CUDA-card, we provide a C-version as well.
 - Docker image: `docker pull christiantinauer/relaxometry_c`
 - Run command: `docker run -it relaxometry_c`
 
-## How to build
+Note: the c-processorname has to be used, e.g. `clmf` instead of `cudalmf`
 
 ## Dependencies
 - [Grassroots DICOM implementation](https://sourceforge.net/projects/gdcm/)
