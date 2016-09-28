@@ -1,5 +1,5 @@
 FROM nvidia/cuda:7.5-devel
-MAINTAINER Christian Tinauer <christian.tinauer@gmail.com>
+MAINTAINER Christian Tinauer <christian.tinauer@neuroimaging.at>
 
 RUN \
 	apt-get update && apt-get install -y --no-install-recommends --force-yes \
