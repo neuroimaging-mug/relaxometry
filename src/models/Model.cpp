@@ -25,6 +25,10 @@ short ArgumentToModelFunctionID(const string& argument) {
 		return 8;
 	else if(argument.compare("ssv") == 0)
 		return 9;
+	else if(argument.compare("lrr1") == 0)
+		return 10;
+	else if(argument.compare("lrt1") == 0)
+		return 11;
 	else
 		return -1;
 }
@@ -66,7 +70,7 @@ int ModelFunctionIDToParametersCount(const short id) {
 }
 
 float ModelFunctionIDToTimeCorrectionFactor(const short id) {
-	if(id == 0 || id == 2 || id == 4 || id == 7)
+	if(id == 0 || id == 2 || id == 4 || id == 7 || id == 10)
 		return 0.001f;
 	else
 		return 1.f;

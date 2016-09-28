@@ -240,6 +240,73 @@ void ModelService::LinearRegressionR2(
 	parameters[0] = 1 / parameters[0];
 }
 
+template<typename NUMERICTYPE>
+void ModelService::LinearRegressionT1(
+	NUMERICTYPE* input, NUMERICTYPE* output, int length,
+	NUMERICTYPE* parameters, int parametersLength,
+	NUMERICTYPE* constants, int constantsLength) {
+	NUMERICTYPE move = output[length - 1] * 1.01;
+	if(move < 100) {
+		parameters[0] = 0;
+		parameters[1] = 0;
+		return;
+	}
+	
+	move = 2000;
+	
+	NUMERICTYPE t1 = 1200;// constants[1];
+	NUMERICTYPE a = 1.8;//constants[3];
+	NUMERICTYPE deltaT = 300;
+	NUMERICTYPE extremumAt = log(a)*t1;
+	
+	NUMERICTYPE xSum = 0;
+	NUMERICTYPE ySum = 0;
+	for(int index = 0; index < length; ++index) {
+		xSum += input[index];
+		ySum += output[index] * -1 + move;
+	}
+	NUMERICTYPE xMean = xSum / (NUMERICTYPE)length;
+	NUMERICTYPE yMean = log(ySum / (NUMERICTYPE)length);
+	
+	NUMERICTYPE covariance = 0; // SS_xy
+	NUMERICTYPE variance = 0; // SS_xx
+	for(int index = 0; index < length; ++index) {
+		NUMERICTYPE xis = input[index];
+		NUMERICTYPE y = output[index] * -1 + move;
+		NUMERICTYPE yis = log(y);
+		NUMERICTYPE xDiff = xis - xMean;
+		covariance += xDiff * (yis - yMean);
+		variance += xDiff * xDiff;
+	}
+
+	NUMERICTYPE k = covariance / variance;
+  
+	//p1 (T1)
+	NUMERICTYPE p1 = k == 0 ? 0 : 1 / (-2 * k);
+	parameters[0] = p1;
+	
+	//p2 (M0)
+	NUMERICTYPE d = yMean - k * xMean;
+	NUMERICTYPE p2 = exp(d);
+	parameters[1] = p2;
+	
+	if(parametersLength == 3) {
+		//p3 (a)
+		parameters[2] = a;
+	}
+}
+
+template<typename NUMERICTYPE>
+void ModelService::LinearRegressionR1(
+	NUMERICTYPE* input, NUMERICTYPE* output, int length,
+	NUMERICTYPE* parameters, int parametersLength,
+	NUMERICTYPE* constants, int constantsLength) {
+	LinearRegressionT1(input, output, length, 
+		parameters, parametersLength,
+		constants, constantsLength);
+	parameters[0] = 1 / parameters[0];
+}
+
 //Simple start values
 template<typename NUMERICTYPE>
 void ModelService::SimpleStartValues(
@@ -324,7 +391,19 @@ void ModelService::LukzenSavelov(
 	double* input, double* output, int length,
 	double* parameters, int parametersLength,
 	double* constants, int constantsLength);
-	
+
+template
+void ModelService::LinearRegressionR1(
+	double* input, double* output, int length,
+	double* parameters, int parametersLength,
+	double* constants, int constantsLength);
+
+template
+void ModelService::LinearRegressionT1(
+	double* input, double* output, int length,
+	double* parameters, int parametersLength,
+	double* constants, int constantsLength);
+
 template
 void ModelService::LinearRegressionR2(
 	double* input, double* output, int length,
@@ -399,7 +478,19 @@ void ModelService::LukzenSavelov(
 	float* input, float* output, int length,
 	float* parameters, int parametersLength,
 	float* constants, int constantsLength);
-	
+
+template
+void ModelService::LinearRegressionR1(
+	float* input, float* output, int length,
+	float* parameters, int parametersLength,
+	float* constants, int constantsLength);
+
+template
+void ModelService::LinearRegressionT1(
+	float* input, float* output, int length,
+	float* parameters, int parametersLength,
+	float* constants, int constantsLength);
+
 template
 void ModelService::LinearRegressionR2(
 	float* input, float* output, int length,

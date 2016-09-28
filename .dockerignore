@@ -1,0 +1,9 @@
+bin
+build
+dependencies_extensions
+lib
+nbproject
+README.md
+.git
+.gitignore
+.vscode

@@ -62,6 +62,18 @@ class ModelService {
 		NUMERICTYPE* parameters, int parametersLength,
 		NUMERICTYPE* constants, int constantsLength);
 	
+        template<typename NUMERICTYPE>
+	static void LinearRegressionR1(
+		NUMERICTYPE* input, NUMERICTYPE* output, int length,
+		NUMERICTYPE* parameters, int parametersLength,
+		NUMERICTYPE* constants, int constantsLength);
+	
+	template<typename NUMERICTYPE>
+	static void LinearRegressionT1(
+		NUMERICTYPE* input, NUMERICTYPE* output, int length,
+		NUMERICTYPE* parameters, int parametersLength,
+		NUMERICTYPE* constants, int constantsLength);
+        
 	template<typename NUMERICTYPE>
 	static void LinearRegressionR2(
 		NUMERICTYPE* input, NUMERICTYPE* output, int length,

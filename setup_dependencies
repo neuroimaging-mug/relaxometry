@@ -1,27 +1,35 @@
 mkdir dependencies
 
 cd dependencies
-curl -o gtest.zip http://googletest.googlecode.com/files/gtest-1.7.0.zip
-unzip gtest.zip
-rm gtest.zip
-mv gtest-1.7.0 gtest
 
-mkdir gtest_bin
-cd gtest_bin
-cmake ../gtest
-make
+#curl -o gtest.zip http://googletest.googlecode.com/files/gtest-1.7.0.zip
+#unzip gtest.zip
+#rm gtest.zip
+#mv gtest-1.7.0 gtest
 
-cd ..
-curl -L -o nifticlib.tar.gz http://sourceforge.net/projects/niftilib/files/nifticlib/nifticlib_2_0_0/nifticlib-2.0.0.tar.gz/download
+#mkdir gtest_bin
+#cd gtest_bin
+#cmake ../gtest
+#make
+
+#cd ..
+
+curl -k -L -o nifticlib.tar.gz http://sourceforge.net/projects/niftilib/files/nifticlib/nifticlib_2_0_0/nifticlib-2.0.0.tar.gz/download
 tar xfz nifticlib.tar.gz
 rm nifticlib.tar.gz
 mv nifticlib-2.0.0 nifticlib
 
-mkdir nifticlib_extension
-cp -r ../dependencies_extensions/nifticlib_extension/* nifticlib_extension
+#mkdir nifticlib_extension
+#cp -r ../dependencies_extensions/nifticlib_extension/* nifticlib_extension
+
+mkdir nifticlib_build
+cd nifticlib_build
+cmake -D USE_FSL_CODE:BOOL=YES ../nifticlib #../nifticlib_extension 
+make package
+
+cd ..
 
 mkdir nifticlib_bin
 cd nifticlib_bin
-cmake -D USE_FSL_CODE:BOOL=YES ../nifticlib_extension 
-make
-make install
+tar xfz ../nifticlib_build/NIFTI-2.0.0-Linux.tar.gz
+mv NIFTI-2.0.0-Linux nifticlib

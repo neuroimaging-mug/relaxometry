@@ -4,6 +4,5 @@ cd build
 cmake ..
 make
 
-cd ../bin
-./relaxometry --help
+cd ..
 

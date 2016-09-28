@@ -7,12 +7,44 @@ set(CUDA_NVCC_FLAGS ${CUDA_NVCC_FLAGS}
 	#-g #host-debug
 	#-gencode=arch=compute_12,code=sm_12
 	-gencode=arch=compute_20,code=sm_20
-        -gencode=arch=compute_50,code=sm_50
+	-gencode=arch=compute_50,code=sm_50
 )
+
+IF(NO_CUDA)
+	add_definitions(-DNO_CUDA)
+ENDIF(NO_CUDA)
 
 #preprocessor statement for switching between global and shared memory for calculations (CUDA)
 #add_definitions(-DUSE_SHARED_MEMORY)
 
+IF(NO_CUDA)
+set(LIB_SOURCE_FILES
+	includes/StringExtensions
+	io/data/ProcessorData
+	#Models
+	models/Model
+	models/c/ModelService
+	models/c/Model
+	#Processor base
+	processors/ProcessorContext
+	processors/IProcessor	
+	processors/ProcessorService
+	#C Processors
+	processors/c/LinearRegression/CLinearRegression	
+	processors/c/LinearRegression/CLinearRegressionProcessor
+	processors/c/LevenbergMarquardt/CJacobian
+	processors/c/LevenbergMarquardt/CCalculateStepVariables
+	processors/c/LevenbergMarquardt/CLevenbergMarquardtCore
+	processors/c/LevenbergMarquardt/CLevenbergMarquardt
+	processors/c/LevenbergMarquardt/CLevenbergMarquardtProcessor
+	processors/c/LevenbergMarquardtFletcher/CLevenbergMarquardtFletcherCore
+	processors/c/LevenbergMarquardtFletcher/CLevenbergMarquardtFletcher
+	processors/c/LevenbergMarquardtFletcher/CLevenbergMarquardtFletcherProcessor
+)
+
+	cuda_add_library(relaxometry_ccore SHARED ${LIB_SOURCE_FILES})
+	cuda_add_library(relaxometry_ccore_static STATIC ${LIB_SOURCE_FILES})
+ELSE(NO_CUDA)
 set(LIB_SOURCE_FILES
 	includes/StringExtensions
 	cuda/CUDADevicesService
@@ -72,8 +104,9 @@ set(LIB_SOURCE_FILES
 	processors/cuda/LevenbergMarquardt/CudaLevenbergMarquardtProcessor
 )
 
-cuda_add_library(relaxometrycore SHARED ${LIB_SOURCE_FILES})
-cuda_add_library(relaxometrycore_static STATIC ${LIB_SOURCE_FILES})
+	cuda_add_library(relaxometrycore SHARED ${LIB_SOURCE_FILES})
+	cuda_add_library(relaxometrycore_static STATIC ${LIB_SOURCE_FILES})
+ENDIF(NO_CUDA)
 
 set(APP_SOURCE_FILES
 	includes/ezOptionParser
@@ -82,5 +115,10 @@ set(APP_SOURCE_FILES
 
 add_subdirectory(io)
 
-cuda_add_executable(relaxometry ${APP_SOURCE_FILES})
-target_link_libraries(relaxometry relaxometrycore_static relaxometryio_static ${GDCM_LIB} ${NIFTI_LIB})
+IF(NO_CUDA)
+	cuda_add_executable(relaxometry_c ${APP_SOURCE_FILES})
+	target_link_libraries(relaxometry_c relaxometry_ccore_static relaxometryio_static ${GDCM_LIB} ${NIFTI_LIB})
+ELSE(NO_CUDA)
+	cuda_add_executable(relaxometry ${APP_SOURCE_FILES})
+	target_link_libraries(relaxometry relaxometrycore_static relaxometryio_static ${GDCM_LIB} ${NIFTI_LIB})
+ENDIF(NO_CUDA)

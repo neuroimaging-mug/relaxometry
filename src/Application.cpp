@@ -1,6 +1,9 @@
 #include "Application.hpp"
 
-#include "cuda/CUDADevicesService.hpp"
+#ifndef NO_CUDA
+	#include "cuda/CUDADevicesService.hpp"
+#endif /* NO_CUDA */
+
 #include "io/handler/IFileHandler.hpp"
 #include "io/handler/TextFileHandler.hpp"
 #include "io/data/ProcessorData.hpp"
@@ -28,12 +31,18 @@ int main(int argc, const char** argv) {
     return EXIT_FAILURE;
   }
 
+#ifndef NO_CUDA
 	if(optionParser.isSet("-lcdevs")) {
 		vector<string> devices = CUDADevicesService::listCUDADevices();
-		for(int i = 0; i < devices.size(); ++i)
-			cout << devices[i] << ".\n";
+		if(devices.size() == 0) {
+			cout << "No CUDA device found.\n";
+		} else {
+			for(int i = 0; i < devices.size(); ++i)
+				cout << devices[i] << ".\n";
+		}
     return EXIT_SUCCESS;
   }
+#endif /* NO_CUDA */
 	
 	vector<string> badOptions;
 	if(!optionParser.gotRequired(badOptions)) {
@@ -58,6 +67,7 @@ int main(int argc, const char** argv) {
 		return EXIT_FAILURE;
 	}
 	
+#ifndef NO_CUDA
 	//setup cuda device
 	int deviceCount = CUDADevicesService::listCUDADevices().size();
 	if(deviceCount > 0) {
@@ -70,6 +80,7 @@ int main(int argc, const char** argv) {
 		}
 		cout << "CUDA device set: " << CUDADevicesService::getCurrentCUDADevice() << endl;
 	}
+#endif /* NO_CUDA */
 	
 	//handle common arguments
 	bool debug = optionParser.isSet("+debug");
@@ -87,7 +98,10 @@ int main(int argc, const char** argv) {
 	int profileLength = 0;
 	optionParser.get("--profilelength")->getInt(profileLength);
 	int threadCount = 0;
+#ifndef NO_CUDA
 	optionParser.get("--threadcount")->getInt(threadCount);
+#endif /* NO_CUDA */
+	
 	float minGoF = 0.f;
 	optionParser.get("--mingof")->getFloat(minGoF);
 	float stepSizeTolerance = 0.f;
@@ -125,11 +139,14 @@ int main(int argc, const char** argv) {
 	try {		
 		//create processor
 		IProcessor* processor = IProcessor::CreateProcessorFromArgument(processorArgument);
+		
+#ifndef NO_CUDA
 		if(processor->IsCUDAProcessor() && deviceCount == 0) {
 			delete processor;
 			cerr << "ERROR: No CUDA device found. CUDA processors cannot be used." << endl;
 			return EXIT_FAILURE;
 		}
+#endif /* NO_CUDA */
 		
 		//create model
 		Model* model = Model::CreateModelFromArgument(modelArgument, processor->IsCUDAProcessor(), useWeights);
@@ -309,7 +326,7 @@ void setupEzOptionParser(ezOptionParser& optionParser) {
 	optionParser.overview = "Generates T1/T2/T2* maps using Levenberg-Marquardt or Levenberg-Marquardt-Fletcher fitting for the Exponential (T1/T2/T2star) or Lukzen-Savelov (T2) model using C or CUDA.";
   optionParser.syntax = "relaxometry -p clr|cudalr|clm|cudalm|clmf|cudalmf -m lrr2|lrrt2|exp3pr1|exp3pt1|exp2pr1|exp2pt1|expr2|expt2 [OPTIONS] INPUT_FILE OUTPUT_FILE(S)";
   optionParser.example = "relaxometry -t 100 -p cudalmf -m ls --threadcount 64 --flipanglesmap ../data/nii/input/T2/1/FAmap.txt --t1map ../data/nii/input/T2/1/T1map.txt ../data/nii/input/T2/1/mse_brain_01_3.nii.gz ../data/nii/output/T2/1/T2_cudalmf_ls_1.nii.gz ../data/nii/output/T2/1/M0_cudalmf_ls_1.nii.gz ../data/nii/output/T2/1/GoF_cudalmf_ls_1.nii.gz\n\n";
-  optionParser.footer = "Christian Tinauer (christian.tinauer@student.tugraz.at).\nBased on the work of Christof Sirk.\nThis program is free and without warranty.\n";
+  optionParser.footer = "C Christian Tinauer (christian.tinauer@neuroimaging.at), A. Petrovic(2), S. Ropele (1), L. Pirpamer (1)\n1) Neuroimaging Research Unit - Medical University of Graz - www.neuroimaging.at\n2) Institute of Medical Engineering - Technical University of Graz - www.imt.tugraz.at\n";
 	
 	//common
 	optionParser.add(
@@ -321,6 +338,8 @@ void setupEzOptionParser(ezOptionParser& optionParser) {
 	optionParser.add(
 		"", NOT_REQUIRED_OPTION, 0, 0, "Use double precision for calculations (only clm, clmf).",
 		"+usedoubleprecision");
+	
+#ifndef NO_CUDA
 	optionParser.add(
 		"", NOT_REQUIRED_OPTION, 0, 0, "List CUDA devices.",
 		"-lcdevs", "--listcudadevices");
@@ -330,11 +349,19 @@ void setupEzOptionParser(ezOptionParser& optionParser) {
 	optionParser.add(
 		"64", NOT_REQUIRED_OPTION, 1, 0, "Thread count for CUDA kernel calls.",
 		"-tc", "--threadcount");
-		
+	
 	//processor
 	optionParser.add(
 		"", REQUIRED_OPTION, 1, 0, "Processor: clr, clm, clmf, cudalr, cudalm, cudalmf.",
 		"-p", "--processor");
+#endif /* NO_CUDA */
+			
+#ifdef NO_CUDA
+		//processor
+	optionParser.add(
+		"", REQUIRED_OPTION, 1, 0, "Processor: clr, clm, clmf.",
+		"-p", "--processor");
+#endif
 	
 	//model
 	optionParser.add(
@@ -367,7 +394,7 @@ void setupEzOptionParser(ezOptionParser& optionParser) {
 		"", NOT_REQUIRED_OPTION, 1, 0, "Flip angles map path.",
 		"--flipanglesmap", "--flipangles");
 	optionParser.add(
-		"1000,800,1.98", NOT_REQUIRED_OPTION, -1, ',', "Start values for T1, M0, B1 fit.",
+		"1200,800,1.8", NOT_REQUIRED_OPTION, -1, ',', "Start values for T1, M0, B1 fit.",
 		"--startvalues");
 	optionParser.add(
 		"-30000,30000,0,15000,1.5,2", NOT_REQUIRED_OPTION, -1, ',', "Min/max values for T1/T2/T2star, M0, B1.",

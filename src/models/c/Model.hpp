@@ -70,6 +70,16 @@ inline void cModelFunction(
 				parameters, parametersLength,
 				constants, constantsLength);
 			break;
+                case 10:
+			ModelService::LinearRegressionR1(input, output, length, 
+				parameters, parametersLength,
+				constants, constantsLength);
+			break;
+                case 11:
+			ModelService::LinearRegressionT1(input, output, length, 
+				parameters, parametersLength,
+				constants, constantsLength);
+			break;
 		default:
 			throw runtime_error("ModelFunctionID does not exist. ID: " + to_string(modelFunctionID) + ".");
 	}
