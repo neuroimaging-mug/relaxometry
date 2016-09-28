@@ -1,12 +1,12 @@
 # MRI-fitting: Fast estimation of relaxometry times using CUDA
 
-This work will be presented at the 33rd annual meeting of the ESMRMB 2016 in Vienna
+This work will be presented at the **33rd annual meeting of the ESMRMB 2016 in Vienna**
 
-Presentation number: 531
+Presentation number: 531 <br>
 Abstract ID: 687
 
-29.09.2016, 14:00-15:00
-30.09.2016, 10:50-11:50
+29.09.2016, 14:00-15:00<br>
+30.09.2016, 10:50-11:50<br>
 Desk Nr: 4
 
 # Purpose of the software
