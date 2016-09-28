@@ -1,13 +1,13 @@
 # MRI-fitting: Fast estimation of relaxometry times using CUDA
-
-This work will be presented at the **33rd annual meeting of the ESMRMB 2016 in Vienna**
+This work will be presented at the **33rd annual meeting of the ESMRMB 2016 in Vienna** <br>
 
 Presentation number: 531 <br>
 Abstract ID: 687
 
 29.09.2016, 14:00-15:00<br>
 30.09.2016, 10:50-11:50<br>
-Desk Nr: 4
+Desk Nr: 4<br>
+DOI: 10.1007/s10334-016-0571-2:531
 
 ## Purpose of the software
 The here presented relaxometry tool was designed to speed up voxelwise fits of monoexponential functions with two or three parameters to estimate T1, T2 or T2* relaxation times and was optimized for the analysis of large clinical cohorts. As a central asset, the software uses the power of the graphics-processing unit (GPU) which enables a significant decrease in computing time and which is perfectly suited for the parallelization of such fits. A special feature of the presented tool is its modular structure, which allows the selection of different solvers for each model and which also facilitates the implementation of other functions for voxelwise fits. 
@@ -44,7 +44,7 @@ The following example shows how to create a R2* map using the monoexponential mo
 
 ## References
 [1]   R. Fletcher (1971): A Modified Marquardt Subroutine for Nonlinear Least Squares; Harwell<br>
-[2]   M. Balda (2012): LMFnlsq - Solution of nonlinear least squares; http://de.mathworks.com/matlabcentral/fileexchange/17534-lmfnlsq-solution-of-nonlinear-least-squares <br>
+[2]   M. Balda (2012): [LMFnlsq](http://de.mathworks.com/matlabcentral/fileexchange/17534-lmfnlsq-solution-of-nonlinear-least-squares) - Solution of nonlinear least squares; <br>
 [3]   S.M. Smith (2012): Fast robust automated brain extraction. Human Brain Mapping, 17(3):143-155 <br>
 [4]   A. Petrovic, E. Scheurer, R. Stollberger (2015): Closed-form solution for T2 mapping with nonideal refocusing of slice selective CPMG sequences; MRM <br>
 
