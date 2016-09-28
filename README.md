@@ -30,10 +30,10 @@ Example shows how to create a R2* map using the monoexponential model.
 - [NVIDIA CUDA](https://developer.nvidia.com/cuda-zone)
 
 ## References
-[1]   R. Fletcher (1971): A Modified Marquardt Subroutine for Nonlinear Least Squares; Harwell
-[2]   M. Balda (2012): LMFnlsq - Solution of nonlinear least squares; http://de.mathworks.com/matlabcentral/fileexchange/17534-lmfnlsq-solution-of-nonlinear-least-squares
-[3]   S.M. Smith (2012): Fast robust automated brain extraction. Human Brain Mapping, 17(3):143-155
-[4]   A. Petrovic, E. Scheurer, R. Stollberger (2015): Closed-form solution for T2 mapping with nonideal refocusing of slice selective CPMG sequences; MRM
+[1]   R. Fletcher (1971): A Modified Marquardt Subroutine for Nonlinear Least Squares; Harwell<br>
+[2]   M. Balda (2012): LMFnlsq - Solution of nonlinear least squares; http://de.mathworks.com/matlabcentral/fileexchange/17534-lmfnlsq-solution-of-nonlinear-least-squares <br>
+[3]   S.M. Smith (2012): Fast robust automated brain extraction. Human Brain Mapping, 17(3):143-155 <br>
+[4]   A. Petrovic, E. Scheurer, R. Stollberger (2015): Closed-form solution for T2 mapping with nonideal refocusing of slice selective CPMG sequences; MRM <br>
 
 ## Authors
 C. Tinauer (1), A. Petrovic (2), S. Ropele (1), L. Pirpamer (1) <br>
