@@ -38,4 +38,4 @@ Example shows how to create a R2* map using the monoexponential model.
 ## Authors
 C. Tinauer (1), A. Petrovic (2), S. Ropele (1), L. Pirpamer (1) <br>
 1) *Neuroimaging Research Unit - Medical University of Graz, Department of Neurology, Graz, Austria;* <br>
-2) *Institute of Medical Engineering, Graz University of Technology, Graz, Austria; *
+2) *Institute of Medical Engineering, Graz University of Technology, Graz, Austria;*
