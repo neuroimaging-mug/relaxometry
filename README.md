@@ -1,12 +1,8 @@
 # MRI-fitting: Fast estimation of relaxometry times using CUDA
-This work will be presented at the **33rd annual meeting of the ESMRMB 2016 in Vienna** <br>
+This work was presented at the **33rd annual meeting of the ESMRMB 2016 in Vienna** <br>
 
 Presentation number: 531 <br>
 Abstract ID: 687
-
-29.09.2016, 14:00-15:00<br>
-30.09.2016, 10:50-11:50<br>
-Desk Nr: 4<br>
 DOI: 10.1007/s10334-016-0571-2:531
 
 ## Purpose of the software
@@ -39,6 +35,10 @@ Note: the c-processorname has to be used, e.g. `clmf` instead of `cudalmf`
 - [nifticlib](https://sourceforge.net/projects/niftilib/files/nifticlib/)
 - [NVIDIA CUDA](https://developer.nvidia.com/cuda-zone)
 
+## Installation
+1. Download this  [repository](https://codeload.github.com/christiantinauer/relaxometry/zip/master) and unzip it in a folder with write access. 
+2. Install the dependencies with the provieded script with administrator rights: `sudo ./setup_dependencies`
+3. Run the setup script: `./setup`
 
 ## Usage
 ### Inputs
