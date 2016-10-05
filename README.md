@@ -3,7 +3,7 @@ This work was presented at the **33rd annual meeting of the ESMRMB 2016 in Vienn
 
 Presentation number: 531 <br>
 Abstract ID: 687
-DOI: 10.1007/s10334-016-0571-2:531
+DOI: [10.1007/s10334-016-0571-2 p.531](http://link.springer.com/article/10.1007/s10334-016-0571-2)
 
 ## Purpose of the software
 The here presented relaxometry tool was designed to speed up voxelwise fits of monoexponential functions with two or three parameters to estimate T1, T2 or T2* relaxation times and was optimized for the analysis of large clinical cohorts. As a central asset, the software uses the power of the graphics-processing unit (GPU) which enables a significant decrease in computing time and which is perfectly suited for the parallelization of such fits. A special feature of the presented tool is its modular structure, which allows the selection of different solvers for each model and which also facilitates the implementation of other functions for voxelwise fits. 
