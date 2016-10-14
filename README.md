@@ -36,6 +36,11 @@ Note: the c-processorname has to be used, e.g. `clmf` instead of `cudalmf`
 - [NVIDIA CUDA](https://developer.nvidia.com/cuda-zone)
 
 ## Installation
+Note: please make sure that you have installed the g++ 4.9 version. To install the new version e.g. on Ubuntu 14.4, you could use following commands: <br>
+`sudo add-apt-repository ppa:ubuntu-toolchain-r/test` <br>
+`sudo apt-get update `<br> 
+`sudo apt-get install g++-4.9 `<br>
+
 1. Download this  [repository](https://codeload.github.com/christiantinauer/relaxometry/zip/master) and unzip it in a folder with write access. 
 2. Install the dependencies with the provieded script with administrator rights: `sudo ./setup_dependencies`
 3. Run the setup script: `./setup`
