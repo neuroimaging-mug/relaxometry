@@ -14,7 +14,7 @@ cd dependencies
 
 #cd ..
 
-curl -k -L -o nifticlib.tar.gz http://sourceforge.net/projects/niftilib/files/nifticlib/nifticlib_2_0_0/nifticlib-2.0.0.tar.gz/download
+curl -k -L -o nifticlib.tar.gz http://netcologne.dl.sourceforge.net/project/niftilib/nifticlib/nifticlib_2_0_0/nifticlib-2.0.0.tar.gz
 tar xfz nifticlib.tar.gz
 rm nifticlib.tar.gz
 mv nifticlib-2.0.0 nifticlib
