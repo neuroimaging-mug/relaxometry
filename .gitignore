@@ -2,7 +2,7 @@ bin/**/*
 lib/**/*
 build/**/*
 dependencies/**/*
-nbproject/private/**/*
+nbproject/**/*
 benchmark/**/*
 data/**/*
 todo/**/*

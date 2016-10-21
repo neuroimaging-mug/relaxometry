@@ -1,0 +1,34 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "cudalmf_expr2_1",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceRoot}/bin/relaxometry",
+			"args": [
+				"-p", "cudalmf",
+				"-m", "expr2",
+				"-t", "100",
+				"--echotimes", "data/nii/input/T2star/1/echotimes.txt",
+				"data/nii/input/T2star/1/gre6E.M.nii.gz", 
+				"data/nii/output/T2star/1/R2star_cudalmf_expr2_1.nii.gz",
+				"data/nii/output/T2star/1/M0_cudalmf_expr2_1.nii.gz",
+				"data/nii/output/T2star/1/GoF_cudalmf_expr2_1.nii.gz"
+			],
+			"stopAtEntry": false,
+			"cwd": "${workspaceRoot}",
+			"environment": [],
+			"externalConsole": false,
+			"linux": {
+				"MIMode": "gdb"
+			},
+			"osx": {
+				"MIMode": "lldb"
+			},
+			"windows": {
+				"MIMode": "gdb"
+			}
+		}
+	]
+}
