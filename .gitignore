@@ -7,3 +7,4 @@ benchmark/**/*
 data/**/*
 todo/**/*
 viewer/**/*
+.vscode/**/*
